@@ -1,0 +1,27 @@
+{
+  "name": "api-client-generator",
+  "version": "1.0.0",
+  "description": "API Client Generator",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pablobrincat/genclient.git"
+  },
+  "keywords": [
+    "API",
+    "CLient",
+    "Generator"
+  ],
+  "author": "don Pablo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pablobrincat/genclient/issues"
+  },
+  "homepage": "https://github.com/pablobrincat/genclient#readme",
+  "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.1.7"
+  }
+}

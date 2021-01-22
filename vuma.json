@@ -1,0 +1,2579 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Order Service API",
+        "description": "This API is for Ordering. For Authentication\n        please pass your API key in the Header as \"Apikey: {apikey}\", or\n        Alternatively you can login into our OAuth system (See docs\n        https://developer.vumatel.co.za/) and pass your token as header\n        \"Authorization: bearer {token}\"\n        <h3>DEPRECATION WARNING</h3>\n        The <code>/create-order/</code>\n        endpoint will soon be deprecated in favour of <code>/isp-order/</code>\n",
+        "contact": {
+            "email": "development@vumatel.co.za"
+        },
+        "license": {
+            "name": "MIT"
+        },
+        "version": "v1"
+    },
+    "host": "pangea.vumatel.co.za",
+    "schemes": [
+        "https"
+    ],
+    "basePath": "/orders",
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "securityDefinitions": {
+        "api_key": {
+            "type": "apiKey",
+            "name": "access_token",
+            "in": "query"
+        }
+    },
+    "security": [
+        {
+            "api_key": []
+        }
+    ],
+    "paths": {
+        "/acceptance/": {
+            "get": {
+                "operationId": "acceptance_list",
+                "description": "Endpoint GET orders that are in accept or reject state",
+                "parameters": [
+                    {
+                        "name": "qborder__installation_activation_confirmed",
+                        "in": "query",
+                        "description": "",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "qborder__scheduling_link",
+                        "in": "query",
+                        "description": "",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "qborder__date_captured",
+                        "in": "query",
+                        "description": "",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "qborder__latest_status",
+                        "in": "query",
+                        "description": "",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "qborder__latest_appointment_date",
+                        "in": "query",
+                        "description": "",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "qborder__scheduling_attempts",
+                        "in": "query",
+                        "description": "",
+                        "required": false,
+                        "type": "number"
+                    },
+                    {
+                        "name": "qborder__date_modified",
+                        "in": "query",
+                        "description": "",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "qborder__schedulable",
+                        "in": "query",
+                        "description": "",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "first_name",
+                        "in": "query",
+                        "description": "",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "last_name",
+                        "in": "query",
+                        "description": "",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "cell_number",
+                        "in": "query",
+                        "description": "",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "identity_number",
+                        "in": "query",
+                        "description": "",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "serviceselected",
+                        "in": "query",
+                        "description": "",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "orderchannel",
+                        "in": "query",
+                        "description": "",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "serviceproviderselected",
+                        "in": "query",
+                        "description": "",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "isp_order_reference",
+                        "in": "query",
+                        "description": "",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "promocode",
+                        "in": "query",
+                        "description": "",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "networktype",
+                        "in": "query",
+                        "description": "",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "network_identifier",
+                        "in": "query",
+                        "description": "",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "orderreference",
+                        "in": "query",
+                        "description": "",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "datecreated",
+                        "in": "query",
+                        "description": "",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "A search term.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "ordering",
+                        "in": "query",
+                        "description": "Which field to use when ordering the results.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "A page number within the paginated result set.",
+                        "required": false,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "required": [
+                                "count",
+                                "results"
+                            ],
+                            "type": "object",
+                            "properties": {
+                                "count": {
+                                    "type": "integer"
+                                },
+                                "next": {
+                                    "type": "string",
+                                    "format": "uri",
+                                    "x-nullable": true
+                                },
+                                "previous": {
+                                    "type": "string",
+                                    "format": "uri",
+                                    "x-nullable": true
+                                },
+                                "results": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/OrderAcceptance"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "acceptance"
+                ]
+            },
+            "parameters": []
+        },
+        "/acceptance/{id}/accept_order/": {
+            "patch": {
+                "operationId": "acceptance_accept_order",
+                "description": "Endpoint GET orders that are in accept or reject state",
+                "parameters": [
+                    {
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "isp_order_reference": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Vumatel order reference number such as 'VT-1234-5678'.",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/ISPOrder"
+                        }
+                    }
+                },
+                "tags": [
+                    "acceptance"
+                ]
+            },
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ]
+        },
+        "/acceptance/{id}/payment_failure/": {
+            "patch": {
+                "operationId": "acceptance_payment_failure",
+                "description": "Endpoint GET orders that are in accept or reject state",
+                "parameters": [
+                    {
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/OrderAcceptance"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/OrderAcceptance"
+                        }
+                    }
+                },
+                "tags": [
+                    "acceptance"
+                ]
+            },
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ]
+        },
+        "/acceptance/{id}/payment_success/": {
+            "patch": {
+                "operationId": "acceptance_payment_success",
+                "description": "Endpoint GET orders that are in accept or reject state",
+                "parameters": [
+                    {
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/OrderAcceptance"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/OrderAcceptance"
+                        }
+                    }
+                },
+                "tags": [
+                    "acceptance"
+                ]
+            },
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ]
+        },
+        "/acceptance/{id}/post_acceptance_reject_order/": {
+            "patch": {
+                "operationId": "acceptance_post_acceptance_reject_order",
+                "description": "Endpoint GET orders that are in accept or reject state",
+                "parameters": [
+                    {
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "isp_order_reference": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Vumatel order reference number such as 'VT-1234-5678'.",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/ISPOrder"
+                        }
+                    }
+                },
+                "tags": [
+                    "acceptance"
+                ]
+            },
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ]
+        },
+        "/acceptance/{id}/reject_order/": {
+            "patch": {
+                "operationId": "acceptance_reject_order",
+                "description": "Endpoint GET orders that are in accept or reject state",
+                "parameters": [
+                    {
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "isp_order_reference": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Vumatel order reference number such as 'VT-1234-5678'.",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/ISPOrder"
+                        }
+                    }
+                },
+                "tags": [
+                    "acceptance"
+                ]
+            },
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ]
+        },
+        "/create-order/": {
+            "get": {
+                "operationId": "create-order_list",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "orderreference",
+                        "in": "query",
+                        "description": "",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "network_identifier",
+                        "in": "query",
+                        "description": "",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "orderfulfilmenttype",
+                        "in": "query",
+                        "description": "",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "qb_latest_status",
+                        "in": "query",
+                        "description": "",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "order_accepted",
+                        "in": "query",
+                        "description": "",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "A search term.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "ordering",
+                        "in": "query",
+                        "description": "Which field to use when ordering the results.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "A page number within the paginated result set.",
+                        "required": false,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "required": [
+                                "count",
+                                "results"
+                            ],
+                            "type": "object",
+                            "properties": {
+                                "count": {
+                                    "type": "integer"
+                                },
+                                "next": {
+                                    "type": "string",
+                                    "format": "uri",
+                                    "x-nullable": true
+                                },
+                                "previous": {
+                                    "type": "string",
+                                    "format": "uri",
+                                    "x-nullable": true
+                                },
+                                "results": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/ISPOrder"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "create-order"
+                ]
+            },
+            "parameters": []
+        },
+        "/create-order/{id}/": {
+            "get": {
+                "operationId": "create-order_read",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/ISPOrder"
+                        }
+                    }
+                },
+                "tags": [
+                    "create-order"
+                ]
+            },
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ]
+        },
+        "/get_reject_reason/": {
+            "get": {
+                "operationId": "get_reject_reason_list",
+                "description": "View to retrieve reject reasons.",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "get_reject_reason"
+                ]
+            },
+            "parameters": []
+        },
+        "/health/": {
+            "get": {
+                "operationId": "health_list",
+                "description": "Health Endpoint.",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "health"
+                ]
+            },
+            "parameters": []
+        },
+        "/internal/get_order_by_order_id/{order_id}/": {
+            "get": {
+                "operationId": "internal_get_order_by_order_id_read",
+                "description": "Internal only view to retrieve a single order by the order_id.",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "internal"
+                ]
+            },
+            "parameters": [
+                {
+                    "name": "order_id",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ]
+        },
+        "/internal/get_order_by_order_reference/{order_reference}/": {
+            "get": {
+                "operationId": "internal_get_order_by_order_reference_read",
+                "description": "Internal only view to retrieve a single order by the order reference.",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "internal"
+                ]
+            },
+            "parameters": [
+                {
+                    "name": "order_reference",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ]
+        },
+        "/isp-order/": {
+            "get": {
+                "operationId": "isp-order_list",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "orderreference",
+                        "in": "query",
+                        "description": "",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "network_identifier",
+                        "in": "query",
+                        "description": "",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "orderfulfilmenttype",
+                        "in": "query",
+                        "description": "",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "qb_latest_status",
+                        "in": "query",
+                        "description": "",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "order_accepted",
+                        "in": "query",
+                        "description": "",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "A search term.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "ordering",
+                        "in": "query",
+                        "description": "Which field to use when ordering the results.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "A page number within the paginated result set.",
+                        "required": false,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "required": [
+                                "count",
+                                "results"
+                            ],
+                            "type": "object",
+                            "properties": {
+                                "count": {
+                                    "type": "integer"
+                                },
+                                "next": {
+                                    "type": "string",
+                                    "format": "uri",
+                                    "x-nullable": true
+                                },
+                                "previous": {
+                                    "type": "string",
+                                    "format": "uri",
+                                    "x-nullable": true
+                                },
+                                "results": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/ISPOrder"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "isp-order"
+                ]
+            },
+            "parameters": []
+        },
+        "/isp-order/{id}/": {
+            "get": {
+                "operationId": "isp-order_read",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/ISPOrder"
+                        }
+                    }
+                },
+                "tags": [
+                    "isp-order"
+                ]
+            },
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ]
+        },
+        "/order/{id}/change_location/": {
+            "patch": {
+                "operationId": "order_change_location",
+                "description": "Swaps out the location on the order with a new one.\nPushes new catalogue id to Quickbase.",
+                "parameters": [
+                    {
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Order"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Order"
+                        }
+                    }
+                },
+                "tags": [
+                    "order"
+                ]
+            },
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "A unique integer value identifying this order.",
+                    "required": true,
+                    "type": "integer"
+                }
+            ]
+        },
+        "/order/{id}/check_order/": {
+            "get": {
+                "operationId": "order_check_order",
+                "description": "Endpoint to POST/PUT/PATCH/DELETE orders.",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Order"
+                        }
+                    }
+                },
+                "tags": [
+                    "order"
+                ]
+            },
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "A unique integer value identifying this order.",
+                    "required": true,
+                    "type": "integer"
+                }
+            ]
+        },
+        "/order/{id}/update_aex_premise/": {
+            "patch": {
+                "operationId": "order_update_aex_premise",
+                "description": "Updates premise on AEX",
+                "parameters": [
+                    {
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Order"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/Order"
+                        }
+                    }
+                },
+                "tags": [
+                    "order"
+                ]
+            },
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "A unique integer value identifying this order.",
+                    "required": true,
+                    "type": "integer"
+                }
+            ]
+        },
+        "/prepaid/{network_identifier}/get-wifi-details/": {
+            "get": {
+                "operationId": "prepaid_get-wifi-details_list",
+                "description": "View to retrieve wifi details for VR orders",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "prepaid"
+                ]
+            },
+            "patch": {
+                "operationId": "prepaid_get-wifi-details_partial_update",
+                "description": "View to retrieve wifi details for VR orders",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "prepaid"
+                ]
+            },
+            "parameters": [
+                {
+                    "name": "network_identifier",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ]
+        },
+        "/prepaid/{network_identifier}/payment-history/": {
+            "get": {
+                "operationId": "prepaid_payment-history_list",
+                "description": "View to pass payment history to ISP",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "prepaid"
+                ]
+            },
+            "parameters": [
+                {
+                    "name": "network_identifier",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ]
+        },
+        "/prepaid/{network_identifier}/renew-service-payment-link/": {
+            "get": {
+                "operationId": "prepaid_renew-service-payment-link_list",
+                "description": "View to pass payment URL to ISP for existing service",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "prepaid"
+                ]
+            },
+            "parameters": [
+                {
+                    "name": "network_identifier",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ]
+        },
+        "/prepaid/{network_identifier}/renew/": {
+            "post": {
+                "operationId": "prepaid_renew_create",
+                "description": "Renew an existing prepaid service.",
+                "parameters": [
+                    {
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreatePrepaidOrderRenewal"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/CreatePrepaidOrderRenewal"
+                        }
+                    }
+                },
+                "tags": [
+                    "prepaid"
+                ]
+            },
+            "parameters": [
+                {
+                    "name": "network_identifier",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ]
+        },
+        "/prepaid/{network_identifier}/retry-payment/": {
+            "post": {
+                "operationId": "prepaid_retry-payment_create",
+                "description": "View to enable ISPs to retry failed payments",
+                "parameters": [],
+                "responses": {
+                    "201": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "prepaid"
+                ]
+            },
+            "parameters": [
+                {
+                    "name": "network_identifier",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ]
+        },
+        "/prepaid/{network_identifier}/update-credit-card/": {
+            "get": {
+                "operationId": "prepaid_update-credit-card_list",
+                "description": "View to pass URL that ISP can use to update credit card",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "prepaid"
+                ]
+            },
+            "parameters": [
+                {
+                    "name": "network_identifier",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ]
+        },
+        "/prepaid/{orderreference}/activate/": {
+            "post": {
+                "operationId": "prepaid_activate_create",
+                "description": "Set the expiry date for the vouchers on the order.",
+                "parameters": [],
+                "responses": {
+                    "201": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "prepaid"
+                ]
+            },
+            "parameters": [
+                {
+                    "name": "orderreference",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ]
+        },
+        "/prepaid/{orderreference}/renew-payment-link/": {
+            "get": {
+                "operationId": "prepaid_renew-payment-link_list",
+                "description": "View to pass new payment URL link to ISP for new orders",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "prepaid"
+                ]
+            },
+            "parameters": [
+                {
+                    "name": "orderreference",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ]
+        },
+        "/prepaid/{service_identifier}/get-customer-details/": {
+            "get": {
+                "operationId": "prepaid_get-customer-details_list",
+                "description": "View to retrieve order details from service identifier\nThis call is used for VR service changes",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "prepaid"
+                ]
+            },
+            "parameters": [
+                {
+                    "name": "service_identifier",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ]
+        },
+        "/proxy/": {
+            "get": {
+                "operationId": "proxy_list",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "A page number within the paginated result set.",
+                        "required": false,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "proxy"
+                ]
+            },
+            "post": {
+                "operationId": "proxy_create",
+                "description": "Handles the logic involved in creating a proxy order.",
+                "parameters": [],
+                "responses": {
+                    "201": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "proxy"
+                ]
+            },
+            "parameters": []
+        },
+        "/proxy/{id}/": {
+            "get": {
+                "operationId": "proxy_read",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "proxy"
+                ]
+            },
+            "put": {
+                "operationId": "proxy_update",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "proxy"
+                ]
+            },
+            "patch": {
+                "operationId": "proxy_partial_update",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "proxy"
+                ]
+            },
+            "delete": {
+                "operationId": "proxy_delete",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "204": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "proxy"
+                ]
+            },
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ]
+        },
+        "/ready/": {
+            "get": {
+                "operationId": "ready_list",
+                "description": "Health Endpoint.",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "ready"
+                ]
+            },
+            "parameters": []
+        }
+    },
+    "definitions": {
+        "OrderAcceptance": {
+            "required": [
+                "first_name",
+                "last_name",
+                "cell_number",
+                "email",
+                "orderchannel",
+                "date_captured",
+                "product_id"
+            ],
+            "type": "object",
+            "properties": {
+                "id": {
+                    "title": "ID",
+                    "type": "integer",
+                    "readOnly": true
+                },
+                "datecreated": {
+                    "title": "Datecreated",
+                    "type": "string",
+                    "format": "date-time",
+                    "readOnly": true
+                },
+                "identity_number": {
+                    "title": "Identity number",
+                    "type": "string",
+                    "maxLength": 100,
+                    "x-nullable": true
+                },
+                "networktype": {
+                    "title": "Networktype",
+                    "type": "string",
+                    "maxLength": 100,
+                    "x-nullable": true
+                },
+                "orderreference": {
+                    "title": "Orderreference",
+                    "type": "string",
+                    "maxLength": 100,
+                    "x-nullable": true
+                },
+                "order_accepted": {
+                    "title": "Order accepted",
+                    "type": "string",
+                    "enum": [
+                        "MANUAL_ACCEPTED",
+                        "ISP_ACCEPTED",
+                        "AUTO_ACCEPTED",
+                        "REJECTED",
+                        "PAYMENT_ACCEPTED",
+                        "PAYMENT_OUTSTANDING"
+                    ],
+                    "x-nullable": true
+                },
+                "isp_order_reference": {
+                    "title": "Isp order reference",
+                    "type": "string",
+                    "maxLength": 255,
+                    "x-nullable": true
+                },
+                "first_name": {
+                    "title": "First name",
+                    "type": "string",
+                    "maxLength": 100,
+                    "minLength": 1
+                },
+                "last_name": {
+                    "title": "Last name",
+                    "type": "string",
+                    "maxLength": 100,
+                    "minLength": 1
+                },
+                "cell_number": {
+                    "title": "Cell number",
+                    "type": "string",
+                    "maxLength": 50,
+                    "minLength": 1
+                },
+                "email": {
+                    "title": "Email",
+                    "type": "string",
+                    "maxLength": 50,
+                    "minLength": 1
+                },
+                "serviceselected": {
+                    "title": "Serviceselected",
+                    "type": "string",
+                    "maxLength": 100,
+                    "x-nullable": true
+                },
+                "promocode": {
+                    "title": "Promocode",
+                    "type": "string",
+                    "maxLength": 50,
+                    "x-nullable": true
+                },
+                "installationstreetaddress": {
+                    "title": "Installationstreetaddress",
+                    "type": "string",
+                    "x-nullable": true
+                },
+                "location_reference": {
+                    "title": "Location reference",
+                    "type": "string",
+                    "maxLength": 255,
+                    "x-nullable": true
+                },
+                "orderchannel": {
+                    "title": "Orderchannel",
+                    "type": "string",
+                    "maxLength": 100,
+                    "minLength": 1
+                },
+                "date_captured": {
+                    "title": "Date captured",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "product_id": {
+                    "title": "Product id",
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "ISPOrder": {
+            "required": [
+                "orderchannel",
+                "first_name",
+                "last_name",
+                "cell_number",
+                "email",
+                "product_id"
+            ],
+            "type": "object",
+            "properties": {
+                "datecreated": {
+                    "title": "Datecreated",
+                    "type": "string",
+                    "format": "date-time",
+                    "readOnly": true
+                },
+                "orderreference": {
+                    "title": "Orderreference",
+                    "type": "string",
+                    "maxLength": 100,
+                    "x-nullable": true
+                },
+                "isp_order_reference": {
+                    "title": "Isp order reference",
+                    "type": "string",
+                    "maxLength": 255,
+                    "x-nullable": true
+                },
+                "orderchannel": {
+                    "title": "Orderchannel",
+                    "type": "string",
+                    "maxLength": 100,
+                    "minLength": 1
+                },
+                "first_name": {
+                    "title": "First name",
+                    "type": "string",
+                    "maxLength": 100,
+                    "minLength": 1
+                },
+                "last_name": {
+                    "title": "Last name",
+                    "type": "string",
+                    "maxLength": 100,
+                    "minLength": 1
+                },
+                "cell_number": {
+                    "title": "Cell number",
+                    "type": "string",
+                    "maxLength": 50,
+                    "minLength": 1
+                },
+                "email": {
+                    "title": "Email",
+                    "type": "string",
+                    "maxLength": 50,
+                    "minLength": 1
+                },
+                "identity_number": {
+                    "title": "Identity number",
+                    "type": "string",
+                    "maxLength": 100,
+                    "x-nullable": true
+                },
+                "serviceselected": {
+                    "title": "Serviceselected",
+                    "type": "string",
+                    "maxLength": 100,
+                    "x-nullable": true
+                },
+                "networktype": {
+                    "title": "Networktype",
+                    "type": "string",
+                    "maxLength": 100,
+                    "x-nullable": true
+                },
+                "appointment_date": {
+                    "title": "Appointment date",
+                    "type": "string",
+                    "maxLength": 255,
+                    "x-nullable": true
+                },
+                "network_identifier": {
+                    "title": "Network identifier",
+                    "type": "string",
+                    "maxLength": 255,
+                    "x-nullable": true
+                },
+                "promocode": {
+                    "title": "Promocode",
+                    "type": "string",
+                    "maxLength": 50,
+                    "x-nullable": true
+                },
+                "installationstreetaddress": {
+                    "title": "Installationstreetaddress",
+                    "type": "string",
+                    "x-nullable": true
+                },
+                "location_reference": {
+                    "title": "Location reference",
+                    "type": "string",
+                    "maxLength": 255,
+                    "x-nullable": true
+                },
+                "effective_date": {
+                    "title": "Effective date",
+                    "type": "string",
+                    "format": "date",
+                    "x-nullable": true
+                },
+                "orderfulfilmenttype": {
+                    "title": "Orderfulfilmenttype",
+                    "type": "string",
+                    "enum": [
+                        "service",
+                        "termination",
+                        "change",
+                        "activation",
+                        "service_change",
+                        "installation"
+                    ]
+                },
+                "product_id": {
+                    "title": "Product id",
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "BackendReference": {
+            "required": [
+                "backend_name",
+                "backend_field_name",
+                "backend_id"
+            ],
+            "type": "object",
+            "properties": {
+                "id": {
+                    "title": "ID",
+                    "type": "integer"
+                },
+                "backend_name": {
+                    "title": "Backend name",
+                    "type": "string",
+                    "maxLength": 100,
+                    "minLength": 1
+                },
+                "backend_field_name": {
+                    "title": "Backend field name",
+                    "type": "string",
+                    "maxLength": 100,
+                    "minLength": 1
+                },
+                "backend_id": {
+                    "title": "Backend id",
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "StatusChange": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "title": "ID",
+                    "type": "integer"
+                },
+                "old_status": {
+                    "title": "Old status",
+                    "type": "string",
+                    "enum": [
+                        "NEW",
+                        "ORDER_CREATED",
+                        "ORDER_UPDATED",
+                        "ORDER_COMPLETE",
+                        "CUSTOMER_CREATED",
+                        "PREMISE_LINKED",
+                        "ACCOUNT_CREATED",
+                        "WORKORDER_CREATED",
+                        "INSTALLATION_SCHEDULED",
+                        "FAILED",
+                        "PENDING",
+                        "ACKNOWLEDGED",
+                        "IN_PROGRESS",
+                        "REJECTED",
+                        "CANCELLED"
+                    ]
+                },
+                "new_status": {
+                    "title": "New status",
+                    "type": "string",
+                    "enum": [
+                        "NEW",
+                        "ORDER_CREATED",
+                        "ORDER_UPDATED",
+                        "ORDER_COMPLETE",
+                        "CUSTOMER_CREATED",
+                        "PREMISE_LINKED",
+                        "ACCOUNT_CREATED",
+                        "WORKORDER_CREATED",
+                        "INSTALLATION_SCHEDULED",
+                        "FAILED",
+                        "PENDING",
+                        "ACKNOWLEDGED",
+                        "IN_PROGRESS",
+                        "REJECTED",
+                        "CANCELLED"
+                    ]
+                },
+                "date": {
+                    "title": "Date",
+                    "type": "string",
+                    "format": "date-time",
+                    "readOnly": true
+                },
+                "notes": {
+                    "title": "Notes",
+                    "type": "string",
+                    "x-nullable": true
+                }
+            }
+        },
+        "QBOrder": {
+            "title": "Qborder",
+            "required": [
+                "order"
+            ],
+            "type": "object",
+            "properties": {
+                "order": {
+                    "title": "Order",
+                    "type": "integer"
+                },
+                "installation_activation_confirmed": {
+                    "title": "Installation activation confirmed",
+                    "type": "string",
+                    "format": "date",
+                    "x-nullable": true
+                },
+                "confirmed_activation_date": {
+                    "title": "Confirmed activation date",
+                    "type": "string",
+                    "format": "date-time",
+                    "x-nullable": true
+                },
+                "scheduling_link": {
+                    "title": "Scheduling link",
+                    "type": "string",
+                    "maxLength": 255,
+                    "x-nullable": true
+                },
+                "latest_status": {
+                    "title": "Latest status",
+                    "type": "string",
+                    "maxLength": 255,
+                    "x-nullable": true
+                },
+                "latest_appointment_date": {
+                    "title": "Latest appointment date",
+                    "type": "string",
+                    "format": "date-time",
+                    "x-nullable": true
+                },
+                "scheduling_attempts": {
+                    "title": "Scheduling attempts",
+                    "type": "integer",
+                    "maximum": 2147483647,
+                    "minimum": -2147483648,
+                    "x-nullable": true
+                },
+                "date_modified": {
+                    "title": "Date modified",
+                    "type": "string",
+                    "format": "date-time",
+                    "x-nullable": true
+                },
+                "date_captured": {
+                    "title": "Date captured",
+                    "type": "string",
+                    "format": "date-time",
+                    "x-nullable": true
+                },
+                "schedulable": {
+                    "title": "Schedulable",
+                    "type": "boolean",
+                    "x-nullable": true
+                },
+                "scheduable_comment": {
+                    "title": "Scheduable comment",
+                    "type": "string",
+                    "maxLength": 2000,
+                    "x-nullable": true
+                }
+            }
+        },
+        "WebHookResult": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "title": "Status",
+                    "type": "integer",
+                    "maximum": 2147483647,
+                    "minimum": 0
+                },
+                "data": {
+                    "title": "Data",
+                    "type": "string",
+                    "x-nullable": true
+                },
+                "created": {
+                    "title": "Created",
+                    "type": "string",
+                    "format": "date-time",
+                    "readOnly": true
+                }
+            }
+        },
+        "WebHook": {
+            "required": [
+                "registered_url",
+                "event_name",
+                "payload"
+            ],
+            "type": "object",
+            "properties": {
+                "id": {
+                    "title": "ID",
+                    "type": "integer",
+                    "readOnly": true
+                },
+                "order": {
+                    "title": "Order",
+                    "type": "integer",
+                    "x-nullable": true
+                },
+                "registered_url": {
+                    "title": "Registered url",
+                    "type": "string",
+                    "format": "uri",
+                    "maxLength": 200,
+                    "minLength": 1
+                },
+                "event_name": {
+                    "title": "Event name",
+                    "type": "string",
+                    "maxLength": 100,
+                    "minLength": 1
+                },
+                "payload": {
+                    "title": "Payload",
+                    "type": "object"
+                },
+                "created": {
+                    "title": "Created",
+                    "type": "string",
+                    "format": "date-time",
+                    "readOnly": true
+                },
+                "webhook_results": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/WebHookResult"
+                    },
+                    "readOnly": true
+                }
+            }
+        },
+        "Status": {
+            "required": [
+                "order"
+            ],
+            "type": "object",
+            "properties": {
+                "id": {
+                    "title": "ID",
+                    "type": "integer",
+                    "readOnly": true
+                },
+                "date_added": {
+                    "title": "Date added",
+                    "type": "string",
+                    "format": "date-time",
+                    "readOnly": true
+                },
+                "status": {
+                    "title": "Status",
+                    "type": "string",
+                    "maxLength": 100,
+                    "x-nullable": true
+                },
+                "latest_appointment_date": {
+                    "title": "Latest appointment date",
+                    "type": "string",
+                    "format": "date-time",
+                    "x-nullable": true
+                },
+                "scheduling_link": {
+                    "title": "Scheduling link",
+                    "type": "string",
+                    "maxLength": 255,
+                    "x-nullable": true
+                },
+                "confirmed_activation_date": {
+                    "title": "Confirmed activation date",
+                    "type": "string",
+                    "format": "date-time",
+                    "x-nullable": true
+                },
+                "date_modified": {
+                    "title": "Date modified",
+                    "type": "string",
+                    "format": "date-time",
+                    "x-nullable": true
+                },
+                "date_order_received": {
+                    "title": "Date order received",
+                    "type": "string",
+                    "format": "date",
+                    "x-nullable": true
+                },
+                "scheduling_attempt": {
+                    "title": "Scheduling attempt",
+                    "type": "integer",
+                    "maximum": 2147483647,
+                    "minimum": 0,
+                    "x-nullable": true
+                },
+                "network_identifier": {
+                    "title": "Network identifier",
+                    "type": "string",
+                    "maxLength": 256,
+                    "x-nullable": true
+                },
+                "order": {
+                    "title": "Order",
+                    "type": "integer"
+                }
+            }
+        },
+        "AuditTrail": {
+            "required": [
+                "action",
+                "modified_by"
+            ],
+            "type": "object",
+            "properties": {
+                "id": {
+                    "title": "ID",
+                    "type": "integer",
+                    "readOnly": true
+                },
+                "audit_id": {
+                    "title": "Audit id",
+                    "type": "string",
+                    "maxLength": 1000,
+                    "minLength": 1
+                },
+                "action": {
+                    "title": "Action",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "modified_by": {
+                    "title": "Modified by",
+                    "type": "string",
+                    "maxLength": 255,
+                    "minLength": 1
+                },
+                "date_modified": {
+                    "title": "Date modified",
+                    "type": "string",
+                    "format": "date-time",
+                    "x-nullable": true
+                },
+                "order": {
+                    "title": "Order",
+                    "type": "integer",
+                    "x-nullable": true
+                }
+            }
+        },
+        "AcceptanceHistory": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "title": "ID",
+                    "type": "integer",
+                    "readOnly": true
+                },
+                "reason": {
+                    "title": "Reason",
+                    "type": "string",
+                    "maxLength": 255,
+                    "x-nullable": true
+                },
+                "modified_by": {
+                    "title": "Modified by",
+                    "type": "string",
+                    "maxLength": 255,
+                    "x-nullable": true
+                },
+                "date_modified": {
+                    "title": "Date modified",
+                    "type": "string",
+                    "format": "date-time",
+                    "readOnly": true
+                },
+                "payment_received": {
+                    "title": "Payment received",
+                    "type": "boolean"
+                },
+                "order": {
+                    "title": "Order",
+                    "type": "integer",
+                    "x-nullable": true
+                }
+            }
+        },
+        "Payment": {
+            "type": "object",
+            "properties": {
+                "date": {
+                    "title": "Date",
+                    "type": "string",
+                    "format": "date-time",
+                    "readOnly": true
+                },
+                "amount": {
+                    "title": "Amount",
+                    "type": "number",
+                    "x-nullable": true
+                },
+                "payfast_payment_id": {
+                    "title": "Payfast payment id",
+                    "type": "string",
+                    "maxLength": 100,
+                    "x-nullable": true
+                },
+                "easypay_payment_id": {
+                    "title": "Easypay payment id",
+                    "type": "string",
+                    "maxLength": 100,
+                    "x-nullable": true
+                },
+                "reference": {
+                    "title": "Reference",
+                    "type": "string",
+                    "maxLength": 255,
+                    "x-nullable": true
+                },
+                "failure_reason": {
+                    "title": "Failure reason",
+                    "type": "string",
+                    "maxLength": 255,
+                    "x-nullable": true
+                }
+            }
+        },
+        "VoucherRenewal": {
+            "required": [
+                "transaction_reference",
+                "order"
+            ],
+            "type": "object",
+            "properties": {
+                "id": {
+                    "title": "ID",
+                    "type": "integer",
+                    "readOnly": true
+                },
+                "datecreated": {
+                    "title": "Datecreated",
+                    "type": "string",
+                    "format": "date-time",
+                    "readOnly": true
+                },
+                "datemodified": {
+                    "title": "Datemodified",
+                    "type": "string",
+                    "format": "date-time",
+                    "readOnly": true
+                },
+                "payment_url": {
+                    "title": "Payment url",
+                    "type": "string",
+                    "x-nullable": true
+                },
+                "transaction_reference": {
+                    "title": "Transaction reference",
+                    "type": "string",
+                    "maxLength": 100,
+                    "minLength": 1
+                },
+                "easy_pay_number": {
+                    "title": "Easy pay number",
+                    "type": "string",
+                    "maxLength": 100,
+                    "x-nullable": true
+                },
+                "order": {
+                    "title": "Order",
+                    "type": "integer"
+                }
+            }
+        },
+        "Order": {
+            "required": [
+                "first_name",
+                "last_name",
+                "cell_number",
+                "email",
+                "type",
+                "fibrehoodonorder",
+                "city",
+                "orderchannel"
+            ],
+            "type": "object",
+            "properties": {
+                "id": {
+                    "title": "ID",
+                    "type": "integer",
+                    "readOnly": true
+                },
+                "backend_references": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/BackendReference"
+                    },
+                    "readOnly": true
+                },
+                "status_changes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/StatusChange"
+                    },
+                    "readOnly": true
+                },
+                "qborder": {
+                    "$ref": "#/definitions/QBOrder"
+                },
+                "webhook": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/WebHook"
+                    },
+                    "readOnly": true
+                },
+                "statuses": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Status"
+                    },
+                    "readOnly": true
+                },
+                "audit_trail": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/AuditTrail"
+                    },
+                    "readOnly": true
+                },
+                "acceptance_history": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/AcceptanceHistory"
+                    },
+                    "readOnly": true
+                },
+                "payment": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Payment"
+                    },
+                    "readOnly": true
+                },
+                "voucher_renewal": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/VoucherRenewal"
+                    },
+                    "readOnly": true
+                },
+                "first_name": {
+                    "title": "First name",
+                    "type": "string",
+                    "maxLength": 100,
+                    "minLength": 1
+                },
+                "last_name": {
+                    "title": "Last name",
+                    "type": "string",
+                    "maxLength": 100,
+                    "minLength": 1
+                },
+                "cell_number": {
+                    "title": "Cell number",
+                    "type": "string",
+                    "maxLength": 50,
+                    "minLength": 1
+                },
+                "email": {
+                    "title": "Email",
+                    "type": "string",
+                    "maxLength": 50,
+                    "minLength": 1
+                },
+                "identity_number": {
+                    "title": "Identity number",
+                    "type": "string",
+                    "maxLength": 100,
+                    "x-nullable": true
+                },
+                "za_resident": {
+                    "title": "Za resident",
+                    "type": "boolean"
+                },
+                "type": {
+                    "title": "Type",
+                    "type": "string",
+                    "maxLength": 100,
+                    "minLength": 1
+                },
+                "business_name": {
+                    "title": "Business name",
+                    "type": "string",
+                    "maxLength": 100,
+                    "x-nullable": true
+                },
+                "vatnumber": {
+                    "title": "Vatnumber",
+                    "type": "string",
+                    "maxLength": 100,
+                    "x-nullable": true
+                },
+                "businessregistrationnumber": {
+                    "title": "Businessregistrationnumber",
+                    "type": "string",
+                    "maxLength": 50,
+                    "x-nullable": true
+                },
+                "alternativecontactname": {
+                    "title": "Alternativecontactname",
+                    "type": "string",
+                    "maxLength": 100,
+                    "x-nullable": true
+                },
+                "alternatecontactnumber": {
+                    "title": "Alternatecontactnumber",
+                    "type": "string",
+                    "maxLength": 50,
+                    "x-nullable": true
+                },
+                "alternatecontactemail": {
+                    "title": "Alternatecontactemail",
+                    "type": "string",
+                    "maxLength": 255,
+                    "x-nullable": true
+                },
+                "promocode": {
+                    "title": "Promocode",
+                    "type": "string",
+                    "maxLength": 50,
+                    "x-nullable": true
+                },
+                "mduname": {
+                    "title": "Mduname",
+                    "type": "string",
+                    "maxLength": 100,
+                    "x-nullable": true
+                },
+                "mduunitno": {
+                    "title": "Mduunitno",
+                    "type": "string",
+                    "maxLength": 50,
+                    "x-nullable": true
+                },
+                "mdurid": {
+                    "title": "Mdurid",
+                    "type": "string",
+                    "maxLength": 50,
+                    "x-nullable": true
+                },
+                "street_number": {
+                    "title": "Street number",
+                    "type": "string",
+                    "maxLength": 50,
+                    "x-nullable": true
+                },
+                "street_name": {
+                    "title": "Street name",
+                    "type": "string",
+                    "maxLength": 100,
+                    "x-nullable": true
+                },
+                "suburb": {
+                    "title": "Suburb",
+                    "type": "string",
+                    "maxLength": 100,
+                    "x-nullable": true
+                },
+                "fibrehoodonorder": {
+                    "title": "Fibrehoodonorder",
+                    "type": "string",
+                    "maxLength": 100,
+                    "minLength": 1
+                },
+                "city": {
+                    "title": "City",
+                    "type": "string",
+                    "maxLength": 100,
+                    "minLength": 1
+                },
+                "installationstreetaddress": {
+                    "title": "Installationstreetaddress",
+                    "type": "string",
+                    "x-nullable": true
+                },
+                "postal_code": {
+                    "title": "Postal code",
+                    "type": "string",
+                    "maxLength": 50,
+                    "x-nullable": true
+                },
+                "lat": {
+                    "title": "Lat",
+                    "type": "string",
+                    "format": "decimal",
+                    "x-nullable": true
+                },
+                "long": {
+                    "title": "Long",
+                    "type": "string",
+                    "format": "decimal",
+                    "x-nullable": true
+                },
+                "province": {
+                    "title": "Province",
+                    "type": "string",
+                    "maxLength": 100,
+                    "x-nullable": true
+                },
+                "country": {
+                    "title": "Country",
+                    "type": "string",
+                    "maxLength": 100,
+                    "x-nullable": true
+                },
+                "location_id": {
+                    "title": "Location id",
+                    "type": "string",
+                    "maxLength": 50,
+                    "x-nullable": true
+                },
+                "orderchannel": {
+                    "title": "Orderchannel",
+                    "type": "string",
+                    "maxLength": 100,
+                    "minLength": 1
+                },
+                "getupdates": {
+                    "title": "Getupdates",
+                    "type": "boolean"
+                },
+                "networkname": {
+                    "title": "Networkname",
+                    "type": "string",
+                    "maxLength": 100,
+                    "x-nullable": true
+                },
+                "networktype": {
+                    "title": "Networktype",
+                    "type": "string",
+                    "maxLength": 100,
+                    "x-nullable": true
+                },
+                "orderreference": {
+                    "title": "Orderreference",
+                    "type": "string",
+                    "maxLength": 100,
+                    "x-nullable": true
+                },
+                "objectgroupid": {
+                    "title": "Objectgroupid",
+                    "type": "string",
+                    "maxLength": 50,
+                    "x-nullable": true
+                },
+                "objectgroupname": {
+                    "title": "Objectgroupname",
+                    "type": "string",
+                    "maxLength": 100,
+                    "x-nullable": true
+                },
+                "relatedpremiseid_ifapplicable": {
+                    "title": "Relatedpremiseid ifapplicable",
+                    "type": "string",
+                    "maxLength": 50,
+                    "x-nullable": true
+                },
+                "serviceproviderselected": {
+                    "title": "Serviceproviderselected",
+                    "type": "string",
+                    "maxLength": 100,
+                    "x-nullable": true
+                },
+                "serviceproviderid": {
+                    "title": "Serviceproviderid",
+                    "type": "string",
+                    "maxLength": 50,
+                    "x-nullable": true
+                },
+                "serviceselected": {
+                    "title": "Serviceselected",
+                    "type": "string",
+                    "maxLength": 100,
+                    "x-nullable": true
+                },
+                "ispserviceid": {
+                    "title": "Ispserviceid",
+                    "type": "string",
+                    "maxLength": 50,
+                    "x-nullable": true
+                },
+                "ordercomplete": {
+                    "title": "Ordercomplete",
+                    "type": "boolean"
+                },
+                "datecreated": {
+                    "title": "Datecreated",
+                    "type": "string",
+                    "format": "date-time",
+                    "readOnly": true
+                },
+                "datemodified": {
+                    "title": "Datemodified",
+                    "type": "string",
+                    "format": "date-time",
+                    "readOnly": true
+                },
+                "recordid": {
+                    "title": "Recordid",
+                    "type": "string",
+                    "maxLength": 50,
+                    "x-nullable": true
+                },
+                "recordowner": {
+                    "title": "Recordowner",
+                    "type": "string",
+                    "maxLength": 100,
+                    "x-nullable": true
+                },
+                "lastmodifiedby": {
+                    "title": "Lastmodifiedby",
+                    "type": "string",
+                    "maxLength": 100,
+                    "x-nullable": true
+                },
+                "processed": {
+                    "title": "Processed",
+                    "type": "boolean"
+                },
+                "transactionref": {
+                    "title": "Transactionref",
+                    "type": "string",
+                    "maxLength": 100,
+                    "x-nullable": true
+                },
+                "ordertype": {
+                    "title": "Ordertype",
+                    "type": "string",
+                    "maxLength": 50,
+                    "x-nullable": true
+                },
+                "orderfulfilmenttype": {
+                    "title": "Orderfulfilmenttype",
+                    "type": "string",
+                    "enum": [
+                        "service",
+                        "termination",
+                        "change",
+                        "activation",
+                        "service_change",
+                        "installation"
+                    ]
+                },
+                "order_already_placed": {
+                    "title": "Order already placed",
+                    "type": "boolean"
+                },
+                "order_comments": {
+                    "title": "Order comments",
+                    "type": "string",
+                    "x-nullable": true
+                },
+                "url": {
+                    "title": "Url",
+                    "type": "string",
+                    "maxLength": 255,
+                    "x-nullable": true
+                },
+                "location_reference": {
+                    "title": "Location reference",
+                    "type": "string",
+                    "maxLength": 255,
+                    "x-nullable": true
+                },
+                "appointment_date": {
+                    "title": "Appointment date",
+                    "type": "string",
+                    "maxLength": 255,
+                    "x-nullable": true
+                },
+                "isp_order_reference": {
+                    "title": "Isp order reference",
+                    "type": "string",
+                    "maxLength": 255,
+                    "x-nullable": true
+                },
+                "organization_id": {
+                    "title": "Organization id",
+                    "type": "integer",
+                    "maximum": 2147483647,
+                    "minimum": -2147483648,
+                    "x-nullable": true
+                },
+                "user_id": {
+                    "title": "User id",
+                    "type": "string",
+                    "maxLength": 255,
+                    "x-nullable": true
+                },
+                "estate_name": {
+                    "title": "Estate name",
+                    "type": "string",
+                    "maxLength": 255,
+                    "x-nullable": true
+                },
+                "status": {
+                    "title": "Status",
+                    "type": "string",
+                    "enum": [
+                        "NEW",
+                        "ORDER_CREATED",
+                        "ORDER_UPDATED",
+                        "ORDER_COMPLETE",
+                        "CUSTOMER_CREATED",
+                        "PREMISE_LINKED",
+                        "ACCOUNT_CREATED",
+                        "WORKORDER_CREATED",
+                        "INSTALLATION_SCHEDULED",
+                        "FAILED",
+                        "PENDING",
+                        "ACKNOWLEDGED",
+                        "IN_PROGRESS",
+                        "REJECTED",
+                        "CANCELLED"
+                    ]
+                },
+                "qb_latest_status": {
+                    "title": "Qb latest status",
+                    "type": "string",
+                    "maxLength": 255,
+                    "x-nullable": true
+                },
+                "order_accepted": {
+                    "title": "Order accepted",
+                    "type": "string",
+                    "enum": [
+                        "MANUAL_ACCEPTED",
+                        "ISP_ACCEPTED",
+                        "AUTO_ACCEPTED",
+                        "REJECTED",
+                        "PAYMENT_ACCEPTED",
+                        "PAYMENT_OUTSTANDING"
+                    ],
+                    "x-nullable": true
+                },
+                "network_identifier": {
+                    "title": "Network identifier",
+                    "type": "string",
+                    "maxLength": 255,
+                    "x-nullable": true
+                },
+                "missing_premise": {
+                    "title": "Missing premise",
+                    "type": "boolean",
+                    "x-nullable": true
+                },
+                "effective_date": {
+                    "title": "Effective date",
+                    "type": "string",
+                    "format": "date",
+                    "x-nullable": true
+                },
+                "service_id_for_quickbase": {
+                    "title": "Service id for quickbase",
+                    "type": "integer",
+                    "maximum": 2147483647,
+                    "minimum": 0,
+                    "x-nullable": true
+                },
+                "voucher_count": {
+                    "title": "Voucher count",
+                    "type": "integer",
+                    "maximum": 2147483647,
+                    "minimum": -2147483648,
+                    "x-nullable": true
+                },
+                "product_reference": {
+                    "title": "Product reference",
+                    "type": "string",
+                    "maxLength": 100,
+                    "x-nullable": true
+                },
+                "product_type": {
+                    "title": "Product type",
+                    "type": "string",
+                    "maxLength": 100,
+                    "minLength": 1
+                },
+                "payment_id": {
+                    "title": "Payment id",
+                    "type": "string",
+                    "format": "uuid",
+                    "x-nullable": true
+                },
+                "payment_redirect_url": {
+                    "title": "Payment redirect url",
+                    "type": "string",
+                    "format": "uri",
+                    "maxLength": 200,
+                    "x-nullable": true
+                },
+                "recurring_payment_date": {
+                    "title": "Recurring payment date",
+                    "type": "integer",
+                    "enum": [
+                        1,
+                        16,
+                        21,
+                        26
+                    ],
+                    "x-nullable": true
+                },
+                "expiry_date": {
+                    "title": "Expiry date",
+                    "type": "string",
+                    "format": "date-time",
+                    "x-nullable": true
+                },
+                "pro_rata_amount": {
+                    "title": "Pro rata amount",
+                    "type": "number",
+                    "x-nullable": true
+                },
+                "installation_comments": {
+                    "title": "Installation comments",
+                    "type": "string",
+                    "x-nullable": true
+                },
+                "change_type": {
+                    "title": "Change type",
+                    "type": "string",
+                    "maxLength": 20,
+                    "x-nullable": true
+                },
+                "direction": {
+                    "title": "Direction",
+                    "type": "string",
+                    "maxLength": 100,
+                    "x-nullable": true
+                }
+            }
+        },
+        "CreatePrepaidOrderRenewal": {
+            "required": [
+                "voucher_count",
+                "payment_redirect_url"
+            ],
+            "type": "object",
+            "properties": {
+                "voucher_count": {
+                    "title": "Voucher count",
+                    "type": "integer",
+                    "maximum": 6,
+                    "minimum": 1
+                },
+                "payment_redirect_url": {
+                    "title": "Payment redirect url",
+                    "type": "string",
+                    "format": "uri",
+                    "minLength": 1
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,7 @@
+{
+  "apiPackage": "Vumatel.API.Client",
+  "netCoreProjectFile": "true",
+  "nonPublicApi": "true",
+  "packageName": "Vumatel.API.Client",
+  "targetFramework": "netcoreapp3.1"
+}
